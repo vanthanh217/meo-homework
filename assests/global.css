@@ -1,0 +1,93 @@
+/* Thanh cuộn và cài đặt cơ bản */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-pine, #1f6b45) transparent;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+body {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Tối ưu cảm ứng cho điện thoại (loại bỏ độ trễ 300ms, tắt vệt xám khi chạm) */
+button, input, select, textarea, [role="button"], label {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html::-webkit-scrollbar,
+.dots::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+html::-webkit-scrollbar-track,
+.dots::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--color-line, #ddd4c6) 80%, transparent);
+  border-radius: 99px;
+}
+
+html::-webkit-scrollbar-thumb,
+.dots::-webkit-scrollbar-thumb {
+  background: var(--color-pine, #1f6b45);
+  border: 2px solid transparent;
+  border-radius: 99px;
+  background-clip: padding-box;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+.dots::-webkit-scrollbar-thumb:hover {
+  background: var(--color-pine-dark, #14382a);
+}
+
+html::-webkit-scrollbar-button,
+.dots::-webkit-scrollbar-button,
+html::-webkit-scrollbar-button:single-button,
+.dots::-webkit-scrollbar-button:single-button,
+html::-webkit-scrollbar-button:horizontal:start:decrement,
+html::-webkit-scrollbar-button:horizontal:end:increment,
+html::-webkit-scrollbar-button:vertical:start:decrement,
+html::-webkit-scrollbar-button:vertical:end:increment,
+.dots::-webkit-scrollbar-button:horizontal:start:decrement,
+.dots::-webkit-scrollbar-button:horizontal:end:increment {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent;
+}
+
+.dots {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-pine, #1f6b45) color-mix(in srgb, var(--color-line, #ddd4c6) 80%, transparent);
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+#zoom::backdrop {
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Đảm bảo dock dưới cùng cố định trên mobile có padding an toàn */
+.safe-bottom {
+  padding-bottom: max(0.625rem, env(safe-area-inset-bottom, 0.625rem));
+}
+
+/* Hiệu ứng chuyển động mượt khi chuyển câu */
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-card {
+  animation: fadeInSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+

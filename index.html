@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#14382a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>Ôn tập Sinh học 12</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,560;8..60,650&display=swap"
+    rel="stylesheet" />
+  <style type="text/tailwindcss">
+    @theme {
+        --font-sans: "Be Vietnam Pro", "Segoe UI", sans-serif;
+        --font-serif: "Source Serif 4", Palatino, serif;
+        --color-paper: #efeae1;
+        --color-ink: #1b2420;
+        --color-muted: #5e675f;
+        --color-line: #ddd4c6;
+        --color-card: #fffdf8;
+        --color-pine: #1f6b45;
+        --color-pine-dark: #14382a;
+        --color-pine-soft: #e7f3ec;
+        --color-gold: #8a5a12;
+        --color-gold-soft: #f8efd8;
+        --color-rose: #8d2e2e;
+        --color-rose-soft: #f8e7e4;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-paper: #121714;
+          --color-ink: #e7eee9;
+          --color-muted: #a3aea6;
+          --color-line: #2c3832;
+          --color-card: #1b2420;
+          --color-pine: #7dcea5;
+          --color-pine-dark: #d7efe3;
+          --color-pine-soft: #1c3328;
+          --color-gold: #e2c07a;
+          --color-gold-soft: #3a3018;
+          --color-rose: #f0a8a2;
+          --color-rose-soft: #3a2220;
+        }
+      }
+    </style>
+  <link rel="stylesheet" href="assests/global.css" />
+</head>
+
+<body
+  class="min-h-screen bg-paper bg-[radial-gradient(circle_at_top_left,rgba(31,107,69,0.08),transparent_36%)] font-sans text-base leading-relaxed text-ink selection:bg-pine-soft selection:text-pine-dark">
+  <div id="app"
+    class="mx-auto w-[min(920px,calc(100%-1.25rem))] sm:w-[min(920px,calc(100%-2rem))] px-0.5 sm:px-0 py-4 sm:py-7 pb-24 sm:pb-16">
+  </div>
+  <dialog id="zoom"
+    class="m-auto max-h-[92vh] w-[min(960px,calc(100vw-1.5rem))] max-w-[960px] rounded-2xl border-0 bg-neutral-950 p-3 sm:p-4 shadow-2xl backdrop:bg-black/80">
+    <div class="mb-2 flex items-center justify-between">
+      <span class="text-xs text-neutral-300">🔍 Phóng to hình ảnh</span>
+      <button type="button" data-action="close-zoom"
+        class="inline-flex cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#f6f3ea] px-3.5 py-1.5 text-sm font-semibold text-neutral-900 active:scale-95 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          class="h-4 w-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+        Đóng
+      </button>
+    </div>
+    <div class="flex max-h-[78vh] items-center justify-center overflow-auto rounded-xl bg-white p-2">
+      <img class="mx-auto max-h-[74vh] w-auto max-w-full object-contain" alt="" />
+    </div>
+  </dialog>
+  <script src="assests/quiz.js"></script>
+  <script src="assests/app.js"></script>
+</body>
+
+</html>
