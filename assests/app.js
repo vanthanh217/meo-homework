@@ -34,6 +34,7 @@
     view: "home",
     lessonId: null,
     mode: "practice",
+    shuffleQuestions: false,
     parts: ["I", "II", "III"],
     questions: [],
     index: 0,
@@ -309,6 +310,7 @@
         view: state.view,
         lessonId: state.lessonId,
         mode: state.mode,
+        shuffleQuestions: state.shuffleQuestions,
         parts: state.parts,
         ids: state.questions.map(function (q) {
           return q.id;
@@ -340,6 +342,10 @@
       state.view = saved.view;
       state.lessonId = saved.lessonId;
       state.mode = saved.mode;
+      state.shuffleQuestions =
+        saved.shuffleQuestions !== undefined
+          ? saved.shuffleQuestions
+          : saved.mode === "exam";
       state.parts = saved.parts;
       state.questions = questions;
       state.index = saved.index || 0;
@@ -363,12 +369,41 @@
     })[0];
   }
 
-  function questionsFor(lessonId, parts) {
+  function shuffle(array) {
+    const arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    return arr;
+  }
+
+  function questionsFor(lessonId, parts, shouldShuffle) {
     const source = lessonId === "all" ? SINH12.lessons : [lessonById(lessonId)];
-    return source.flatMap(function (lesson) {
-      return lesson.questions.filter(function (q) {
-        return parts.indexOf(q.part) !== -1;
+    if (!shouldShuffle) {
+      return source.flatMap(function (lesson) {
+        return lesson.questions.filter(function (q) {
+          return parts.indexOf(q.part) !== -1;
+        });
       });
+    }
+
+    const orderedParts = ["I", "II", "III"].filter(function (p) {
+      return parts.indexOf(p) !== -1;
+    });
+
+    return orderedParts.flatMap(function (part) {
+      const partQuestions = [];
+      source.forEach(function (lesson) {
+        lesson.questions.forEach(function (q) {
+          if (q.part === part) {
+            partQuestions.push(q);
+          }
+        });
+      });
+      return shuffle(partQuestions);
     });
   }
 
@@ -660,6 +695,12 @@
           timeChoices +
           "</div></div>"
         : "";
+    const shuffleRow =
+      '<div class="mb-4"><label class="grid cursor-pointer grid-cols-[auto_1fr] items-start gap-3 rounded-[14px] border border-line p-3 sm:p-3.5 hover:bg-surface-muted active:bg-pine-soft/40 transition-colors"><input class="mt-1 h-4 w-4 accent-primary" type="checkbox" data-action="toggle-shuffle"' +
+      (state.shuffleQuestions ? " checked" : "") +
+      '><span class="grid text-sm sm:text-base"><span class="flex items-center gap-2"><b>Xáo trộn thứ tự câu hỏi</b>' +
+      (state.shuffleQuestions ? '<span class="inline-flex items-center rounded-md bg-pine-soft px-2 py-0.5 text-[11px] font-semibold text-pine">Đang bật</span>' : "") +
+      '</span><small class="text-muted">Đảo ngẫu nhiên các câu hỏi theo từng phần (Phần I → II → III) chuẩn cấu trúc đề thi.</small></span></label></div>';
 
     return (
       '<div>' +
@@ -678,6 +719,7 @@
       (state.mode === "exam" ? " checked" : "") +
       '><span class="grid text-sm sm:text-base"><b>Kiểm tra</b><small class="text-muted">Làm hết bài rồi mới nộp. Đáp án hiện sau khi nộp.</small></span></label></div>' +
       timeRow +
+      shuffleRow +
       '<div class="mb-4 grid gap-2.5">' +
       partBoxes +
       '</div><button type="button" class="' +
@@ -717,8 +759,7 @@
       (state.lessonId === "all" ? "Bài " + q.lessonIndex + " · " : "") +
       "Phần " +
       q.part +
-      " · Câu " +
-      q.n;
+      (state.shuffleQuestions && !revealed ? "" : " · Câu " + q.n);
 
     const dots = state.questions
       .map(function (item, index) {
@@ -1423,6 +1464,7 @@
     } else if (action === "open-lesson") {
       state.lessonId = node.dataset.id;
       state.mode = node.dataset.id === "all" ? "exam" : "practice";
+      state.shuffleQuestions = state.mode === "exam";
       state.parts = ["I", "II", "III"];
       state.view = "prep";
       render();
@@ -1431,7 +1473,7 @@
       state.keepScroll = true;
       render();
     } else if (action === "start") {
-      const chosen = questionsFor(state.lessonId, state.parts);
+      const chosen = questionsFor(state.lessonId, state.parts, state.shuffleQuestions);
       if (chosen.length) start(chosen);
     } else if (action === "pick") {
       if (state.checked[q.id]) return;
@@ -1526,7 +1568,12 @@
       state.lastCheckAnim = "";
       render();
     } else if (action === "retry") {
-      start(state.questions.slice());
+      if (state.shuffleQuestions) {
+        const fresh = questionsFor(state.lessonId, state.parts, true);
+        start(fresh);
+      } else {
+        start(state.questions.slice());
+      }
     } else if (action === "retry-wrong") {
       const wrong = state.questions.filter(function (item) {
         return !isMarkedCorrect(item);
@@ -1558,6 +1605,12 @@
     const node = event.target;
     if (node.dataset.action === "set-mode") {
       state.mode = node.value;
+      state.shuffleQuestions = state.mode === "exam";
+      state.keepScroll = true;
+      render();
+    }
+    if (node.dataset.action === "toggle-shuffle") {
+      state.shuffleQuestions = node.checked;
       state.keepScroll = true;
       render();
     }
