@@ -7,9 +7,7 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <meta name="theme-color" content="#166534" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <title>Ôn tập Sinh học 12</title>
+    <title>Ôn tập lớp 12</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,8 +25,6 @@
               window.matchMedia("(prefers-color-scheme: dark)").matches)
           ) {
             document.documentElement.classList.add("dark");
-          } else {
-            document.documentElement.classList.remove("dark");
           }
         } catch (e) {}
       })();
@@ -46,17 +42,9 @@
         --primary-hover: #14532d;
         --focus-ring: #16a34a;
         --primary-text: #ffffff;
-
-        --success: #166534;
         --success-soft: #dcfce7;
-        --danger: #b91c1c;
-        --danger-soft: #fee2e2;
-        --selected: #1d4ed8;
-        --selected-soft: #dbeafe;
-        --bookmark: #b45309;
-        --bookmark-soft: #fef3c7;
+        --tin: #1d4ed8;
       }
-
       html.dark {
         --bg: #0b1220;
         --surface: #111827;
@@ -69,121 +57,132 @@
         --primary-hover: #86efac;
         --focus-ring: #4ade80;
         --primary-text: #0b1220;
-
-        --success: #4ade80;
         --success-soft: #143824;
-        --danger: #f87171;
-        --danger-soft: #3b1717;
-        --selected: #60a5fa;
-        --selected-soft: #1e293b;
-        --bookmark: #fbbf24;
-        --bookmark-soft: #3a2e12;
+        --tin: #93c5fd;
       }
-
       @theme {
         --font-sans: "Be Vietnam Pro", "Segoe UI", sans-serif;
         --font-serif: "Source Serif 4", Palatino, serif;
-
         --color-background: var(--bg);
         --color-surface: var(--surface);
         --color-surface-muted: var(--surface-muted);
         --color-text-primary: var(--text-primary);
-        --color-text-secondary: var(--text-secondary);
         --color-text-muted: var(--text-muted);
         --color-border: var(--border);
         --color-primary: var(--primary);
         --color-primary-hover: var(--primary-hover);
-        --color-focus-ring: var(--focus-ring);
         --color-primary-text: var(--primary-text);
-
         --color-paper: var(--bg);
         --color-card: var(--surface);
         --color-ink: var(--text-primary);
         --color-muted: var(--text-muted);
         --color-line: var(--border);
         --color-pine: var(--primary);
-        --color-pine-dark: var(--primary-hover);
         --color-pine-soft: var(--success-soft);
-        --color-accent: var(--focus-ring);
-
-        --color-success: var(--success);
-        --color-success-soft: var(--success-soft);
-        --color-danger: var(--danger);
-        --color-danger-soft: var(--danger-soft);
-        --color-selected: var(--selected);
-        --color-selected-soft: var(--selected-soft);
-        --color-bookmark: var(--bookmark);
-        --color-bookmark-soft: var(--bookmark-soft);
-        --color-gold: var(--bookmark);
-        --color-gold-soft: var(--bookmark-soft);
-        --color-rose: var(--danger);
-        --color-rose-soft: var(--danger-soft);
+        --color-tin: var(--tin);
       }
     </style>
     <link rel="stylesheet" href="assests/global.css" />
   </head>
-
   <body
-    class="min-h-screen bg-paper font-sans text-base leading-relaxed text-ink selection:bg-pine-soft selection:text-pine transition-colors duration-200"
+    class="min-h-screen bg-paper font-sans text-base leading-relaxed text-ink"
   >
-    <div
-      id="app"
-      class="mx-auto w-[min(920px,calc(100%-1.25rem))] sm:w-[min(960px,calc(100%-2rem))] lg:w-[min(1240px,calc(100%-2.5rem))] xl:w-[min(1340px,calc(100%-3rem))] px-0.5 sm:px-0 py-4 sm:py-6 pb-24 sm:pb-12"
-    ></div>
-    <dialog
-      id="zoom"
-      class="m-auto max-h-[92vh] w-[min(960px,calc(100vw-1.5rem))] max-w-[960px] rounded-2xl border-0 bg-neutral-950 p-3 sm:p-4 shadow-2xl backdrop:bg-black/80"
-    >
-      <div class="mb-2 flex items-center justify-between">
-        <button class="text-xs text-neutral-300">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
+    <main class="mx-auto w-[min(920px,calc(100%-1.25rem))] py-6 sm:py-10">
+      <div
+        class="mb-6 flex items-center justify-between gap-3 border-b border-line pb-3"
+      >
+        <div class="flex items-center gap-2.5">
+          <span
+            class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-text"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6"
-            />
-          </svg>
-          Phóng to hình ảnh
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-5 w-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
+              />
+            </svg>
+          </span>
+          <div class="leading-tight">
+            <strong class="block text-sm sm:text-base">Ôn tập lớp 12</strong>
+            <span class="text-xs text-muted">Năm học 2026–2027</span>
+          </div>
+        </div>
         <button
           type="button"
-          data-action="close-zoom"
-          class="inline-flex cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#f6f3ea] px-3.5 py-1.5 text-sm font-semibold text-neutral-900 active:scale-95 transition-transform"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="h-4 w-4"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18 18 6M6 6l12 12"
-            />
-          </svg>
-          Đóng
-        </button>
+          id="theme"
+          class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border border-line bg-card text-muted"
+          aria-label="Đổi giao diện"
+        ></button>
       </div>
-      <div
-        class="flex max-h-[78vh] items-center justify-center overflow-auto rounded-xl bg-white p-2"
+      <p class="m-0 text-xs font-bold tracking-wide text-primary">Chọn môn</p>
+      <h1
+        class="mt-2 mb-2 font-serif text-[clamp(32px,7vw,52px)] leading-[1.15] font-[650] tracking-[-0.03em]"
       >
-        <img
-          class="mx-auto max-h-[74vh] w-auto max-w-full object-contain"
-          alt=""
-        />
+        Luyện đề
+      </h1>
+      <p class="m-0 max-w-xl text-[15px] text-muted sm:text-[17px]">
+        Chọn môn để làm trắc nghiệm. Mỗi môn có luyện tập từng câu và kiểm tra
+        nộp một lần.
+      </p>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2">
+        <a
+          href="./sinh.html"
+          class="group rounded-2xl border border-line bg-card p-5 shadow-[0_8px_30px_rgba(22,101,52,0.04)] transition-colors hover:border-primary/40"
+        >
+          <p class="m-0 text-xs font-bold tracking-wide text-primary">
+            Sinh học 12
+          </p>
+          <h2 class="mt-2 mb-2 font-serif text-[28px] leading-tight font-[650]">
+            Giữa học kì I
+          </h2>
+          <p class="m-0 text-sm text-muted">
+            5 bài. Nhiều lựa chọn, đúng/sai, trả lời ngắn, kèm hình trong đề.
+          </p>
+          <span
+            class="mt-4 inline-flex h-10 items-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-text"
+            >Vào luyện đề</span
+          >
+        </a>
+        <a
+          href="./tin.html"
+          class="group rounded-2xl border border-line bg-card p-5 shadow-[0_8px_30px_rgba(29,78,216,0.06)] transition-colors hover:border-tin/40"
+        >
+          <p class="m-0 text-xs font-bold tracking-wide text-tin">Tin học 12</p>
+          <h2 class="mt-2 mb-2 font-serif text-[28px] leading-tight font-[650]">
+            Luyện đề Tin học
+          </h2>
+          <p class="m-0 text-sm text-muted">
+            172 câu. 133 trắc nghiệm, 29 đúng/sai, 10 trả lời ngắn.
+          </p>
+          <span
+            class="mt-4 inline-flex h-10 items-center rounded-xl bg-[#1d4ed8] px-4 text-sm font-semibold text-white"
+            >Vào luyện đề</span
+          >
+        </a>
       </div>
-    </dialog>
-    <script src="assests/quiz.js"></script>
-    <script src="assests/app.js"></script>
+    </main>
+    <script>
+      (function () {
+        var button = document.getElementById("theme");
+        function paint() {
+          var dark = document.documentElement.classList.contains("dark");
+          button.textContent = dark ? "Sáng" : "Tối";
+        }
+        button.addEventListener("click", function () {
+          var dark = document.documentElement.classList.toggle("dark");
+          localStorage.setItem("sinh12-theme", dark ? "dark" : "light");
+          paint();
+        });
+        paint();
+      })();
+    </script>
   </body>
 </html>

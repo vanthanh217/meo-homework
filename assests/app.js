@@ -8,11 +8,18 @@
   const SESSION = "sinh12-gk1-session";
   const letters = ["A", "B", "C", "D"];
   const marks = ["a", "b", "c", "d"];
-  const btn = "cursor-pointer appearance-none select-none disabled:cursor-not-allowed disabled:opacity-45 touch-manipulation transition-all inline-flex items-center justify-center";
-  const primary = btn + " h-10 rounded-xl bg-primary hover:bg-primary-hover px-4 sm:px-5 text-sm sm:text-base font-semibold text-primary-text active:scale-[0.98] shadow-sm";
-  const ghost = btn + " h-10 rounded-xl border border-line bg-card hover:bg-surface-muted text-ink px-4 sm:px-5 text-sm sm:text-base font-medium active:scale-[0.98]";
-  const textBtn = "cursor-pointer border-0 bg-transparent px-2.5 h-10 inline-flex items-center text-muted hover:text-primary active:scale-95 touch-manipulation rounded-lg transition-colors";
-  const eyebrow = "m-0 text-xs sm:text-[13px] font-bold text-primary tracking-wide";
+  const btn =
+    "cursor-pointer appearance-none select-none disabled:cursor-not-allowed disabled:opacity-45 touch-manipulation transition-all inline-flex items-center justify-center";
+  const primary =
+    btn +
+    " h-10 rounded-xl bg-primary hover:bg-primary-hover px-4 sm:px-5 text-sm sm:text-base font-semibold text-primary-text active:scale-[0.98] shadow-sm";
+  const ghost =
+    btn +
+    " h-10 rounded-xl border border-line bg-card hover:bg-surface-muted text-ink px-4 sm:px-5 text-sm sm:text-base font-medium active:scale-[0.98]";
+  const textBtn =
+    "cursor-pointer border-0 bg-transparent px-2.5 h-10 inline-flex items-center text-muted hover:text-primary active:scale-95 touch-manipulation rounded-lg transition-colors";
+  const eyebrow =
+    "m-0 text-xs sm:text-[13px] font-bold text-primary tracking-wide";
   const sheet =
     "anim-card rounded-2xl sm:rounded-[22px] border border-line bg-card p-4 sm:p-[22px] shadow-[0_8px_30px_rgba(22,101,52,0.04)]";
   const heading =
@@ -41,7 +48,11 @@
     answers: {},
     checked: {},
     bookmarks: {},
-    theme: localStorage.getItem("sinh12-theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
+    theme:
+      localStorage.getItem("sinh12-theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"),
     modal: null,
     hint: "",
     filter: "wrong",
@@ -93,7 +104,10 @@
         osc.type = type || "sine";
         osc.frequency.setValueAtTime(freq, startTime);
         gain.gain.setValueAtTime(startVol || 0.15, startTime);
-        gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, endVol || 0.0001), startTime + duration);
+        gain.gain.exponentialRampToValueAtTime(
+          Math.max(0.0001, endVol || 0.0001),
+          startTime + duration,
+        );
         osc.connect(gain);
         gain.connect(audio.destination);
         osc.start(startTime);
@@ -161,7 +175,7 @@
         // Giai điệu nhẹ nhàng khích lệ
         playTone(392, "sine", now, 0.2, 0.15, 0.01);
         playTone(440, "sine", now + 0.14, 0.3, 0.18, 0.001);
-      }
+      },
     };
   })();
 
@@ -178,7 +192,15 @@
     const width = (canvas.width = window.innerWidth);
     const height = (canvas.height = window.innerHeight);
 
-    const colors = ["#22c55e", "#166534", "#3b82f6", "#eab308", "#ec4899", "#8b5cf6", "#f97316"];
+    const colors = [
+      "#22c55e",
+      "#166534",
+      "#3b82f6",
+      "#eab308",
+      "#ec4899",
+      "#8b5cf6",
+      "#f97316",
+    ];
     const particles = [];
     for (let i = 0; i < 75; i++) {
       particles.push({
@@ -260,7 +282,7 @@
   function headerHtml(subtitle, rightContent) {
     return (
       '<div class="mb-4 flex items-center justify-between gap-3 border-b border-line pb-3 sm:pb-3.5">' +
-      '<div class="flex items-center gap-2.5">' +
+      '<a href="./index.html" class="flex min-w-0 items-center gap-2.5 rounded-xl" title="Chọn môn học">' +
       '<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-text shadow-xs">' +
       '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-5.25 6.557c0 1.25.9 2.25 2.25 2.25h6c1.35 0 2.25-1 2.25-2.25" /></svg>' +
       "</span>" +
@@ -270,7 +292,7 @@
       esc(subtitle || "Ôn tập Sinh học 12") +
       "</span>" +
       "</div>" +
-      "</div>" +
+      "</a>" +
       '<div class="flex items-center gap-2">' +
       (rightContent || "") +
       soundBtnHtml() +
@@ -325,7 +347,7 @@
         minutes: state.minutes,
         deadline: state.deadline,
         timeUp: state.timeUp,
-      })
+      }),
     );
   }
 
@@ -336,9 +358,12 @@
       const questions = saved.ids.map(function (id) {
         return byId.get(id);
       });
-      if (questions.some(function (q) {
-        return !q;
-      })) return;
+      if (
+        questions.some(function (q) {
+          return !q;
+        })
+      )
+        return;
       state.view = saved.view;
       state.lessonId = saved.lessonId;
       state.mode = saved.mode;
@@ -411,9 +436,13 @@
     const answer = state.answers[q.id];
     if (q.type === "mcq") return Number.isInteger(answer);
     if (q.type === "tf") {
-      return Array.isArray(answer) && answer.length === 4 && answer.every(function (value) {
-        return value === true || value === false;
-      });
+      return (
+        Array.isArray(answer) &&
+        answer.length === 4 &&
+        answer.every(function (value) {
+          return value === true || value === false;
+        })
+      );
     }
     return typeof answer === "string" && answer.trim() !== "";
   }
@@ -525,7 +554,9 @@
             esc(image.alt) +
             '"><span class="absolute right-2 bottom-2 inline-flex items-center gap-1.5 rounded-full bg-neutral-900/70 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm sm:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-3.5 w-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" /></svg>Phóng to</span></button>' +
             (image.caption
-              ? '<figcaption class="px-3 pb-2 text-[12px] sm:text-[13px] text-muted text-center">' + esc(image.caption) + "</figcaption>"
+              ? '<figcaption class="px-3 pb-2 text-[12px] sm:text-[13px] text-muted text-center">' +
+                esc(image.caption) +
+                "</figcaption>"
               : "") +
             "</figure>"
           );
@@ -543,7 +574,11 @@
       "</caption><thead><tr>" +
       table.headers
         .map(function (header) {
-          return '<th class="border-b border-line px-2.5 py-2 text-left font-semibold">' + esc(header) + "</th>";
+          return (
+            '<th class="border-b border-line px-2.5 py-2 text-left font-semibold">' +
+            esc(header) +
+            "</th>"
+          );
         })
         .join("") +
       "</tr></thead><tbody>" +
@@ -553,7 +588,11 @@
             "<tr>" +
             row
               .map(function (cell) {
-                return '<td class="border-b border-line px-2.5 py-2 text-left">' + esc(cell) + "</td>";
+                return (
+                  '<td class="border-b border-line px-2.5 py-2 text-left">' +
+                  esc(cell) +
+                  "</td>"
+                );
               })
               .join("") +
             "</tr>"
@@ -607,7 +646,7 @@
       .join("");
 
     return (
-      '<div>' +
+      "<div>" +
       headerHtml("Luyện đề Sinh học", "") +
       '<p class="' +
       eyebrow +
@@ -619,22 +658,24 @@
       // Featured Card matching Image 1 & 4
       '<div class="mt-7 sm:mt-8 rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-xs">' +
       '<div class="flex items-start justify-between gap-3">' +
-      '<div>' +
+      "<div>" +
       '<h2 class="text-base sm:text-lg font-bold text-ink">Đề thi thử · Sinh học 2026</h2>' +
       '<p class="mt-0.5 text-xs sm:text-sm text-muted">40 câu hỏi · 50 phút · Cấu trúc chuẩn THPT</p>' +
-      '</div>' +
+      "</div>" +
       '<span class="inline-flex items-center rounded-full bg-surface-muted px-2.5 py-0.5 text-[11px] font-medium text-muted border border-line">Tổng hợp</span>' +
-      '</div>' +
+      "</div>" +
       '<div class="mt-3.5 mb-3.5 h-1.5 overflow-hidden rounded-full bg-line">' +
       '<span class="block h-full bg-primary" style="width: 100%"></span>' +
-      '</div>' +
+      "</div>" +
       '<div class="flex items-center gap-2.5">' +
-      '<button type="button" class="' + primary + ' flex-1 rounded-xl text-center justify-center font-semibold" data-action="open-lesson" data-id="all">Tiếp tục làm bài</button>' +
+      '<button type="button" class="' +
+      primary +
+      ' flex-1 rounded-xl text-center justify-center font-semibold" data-action="open-lesson" data-id="all">Tiếp tục làm bài</button>' +
       '<button type="button" class="h-10 w-10 shrink-0 rounded-xl border border-line bg-card flex items-center justify-center text-muted hover:text-ink hover:bg-surface-muted transition-colors cursor-pointer" title="Lưu đề" data-action="open-lesson" data-id="all">' +
       '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" /></svg>' +
-      '</button>' +
-      '</div>' +
-      '</div>' +
+      "</button>" +
+      "</div>" +
+      "</div>" +
       // Lessons list
       '<div class="mt-6 sm:mt-7">' +
       '<p class="text-xs font-bold text-muted uppercase tracking-wider mb-2.5 px-1">Luyện tập theo từng bài</p>' +
@@ -646,7 +687,9 @@
 
   function renderPrep() {
     const lesson = state.lessonId === "all" ? null : lessonById(state.lessonId);
-    const title = lesson ? "Bài " + lesson.index + ". " + lesson.title : "Cả 5 bài";
+    const title = lesson
+      ? "Bài " + lesson.index + ". " + lesson.title
+      : "Cả 5 bài";
     const selected = {};
     state.parts.forEach(function (part) {
       selected[part] = true;
@@ -691,7 +734,9 @@
       .join("");
     const timeRow =
       state.mode === "exam"
-        ? '<div class="mb-4"><p class="' + eyebrow + '">Thời gian làm bài</p><div class="mt-2 flex flex-wrap gap-2">' +
+        ? '<div class="mb-4"><p class="' +
+          eyebrow +
+          '">Thời gian làm bài</p><div class="mt-2 flex flex-wrap gap-2">' +
           timeChoices +
           "</div></div>"
         : "";
@@ -699,12 +744,19 @@
       '<div class="mb-4"><label class="grid cursor-pointer grid-cols-[auto_1fr] items-start gap-3 rounded-[14px] border border-line p-3 sm:p-3.5 hover:bg-surface-muted active:bg-pine-soft/40 transition-colors"><input class="mt-1 h-4 w-4 accent-primary" type="checkbox" data-action="toggle-shuffle"' +
       (state.shuffleQuestions ? " checked" : "") +
       '><span class="grid text-sm sm:text-base"><span class="flex items-center gap-2"><b>Xáo trộn thứ tự câu hỏi</b>' +
-      (state.shuffleQuestions ? '<span class="inline-flex items-center rounded-md bg-pine-soft px-2 py-0.5 text-[11px] font-semibold text-pine">Đang bật</span>' : "") +
+      (state.shuffleQuestions
+        ? '<span class="inline-flex items-center rounded-md bg-pine-soft px-2 py-0.5 text-[11px] font-semibold text-pine">Đang bật</span>'
+        : "") +
       '</span><small class="text-muted">Đảo ngẫu nhiên các câu hỏi theo từng phần (Phần I → II → III) chuẩn cấu trúc đề thi.</small></span></label></div>';
 
     return (
-      '<div>' +
-      headerHtml(title, '<button type="button" class="' + textBtn + ' font-medium" data-action="home">← Danh sách bài</button>') +
+      "<div>" +
+      headerHtml(
+        title,
+        '<button type="button" class="' +
+          textBtn +
+          ' font-medium" data-action="home">← Danh sách bài</button>',
+      ) +
       '<article class="' +
       sheet +
       '"><p class="' +
@@ -738,15 +790,26 @@
     const picked = state.answers[q.id] === index;
     if (!revealed) {
       if (picked) {
-        return base + "border-selected bg-selected-soft font-medium text-ink shadow-xs ring-1 ring-selected";
+        return (
+          base +
+          "border-selected bg-selected-soft font-medium text-ink shadow-xs ring-1 ring-selected"
+        );
       }
-      return base + "border-line bg-card hover:border-selected/40 hover:bg-surface-muted text-ink";
+      return (
+        base +
+        "border-line bg-card hover:border-selected/40 hover:bg-surface-muted text-ink"
+      );
     }
     if (index === q.correct) {
-      return base + "border-success bg-success-soft font-semibold text-ink ring-1 ring-success/40";
+      return (
+        base +
+        "border-success bg-success-soft font-semibold text-ink ring-1 ring-success/40"
+      );
     }
     if (picked) {
-      return base + "border-danger bg-danger-soft text-ink ring-1 ring-danger/40";
+      return (
+        base + "border-danger bg-danger-soft text-ink ring-1 ring-danger/40"
+      );
     }
     return base + "border-line bg-card/60 opacity-60 text-ink";
   }
@@ -774,15 +837,20 @@
         cls += "h-9 sm:h-10 w-full ";
 
         if (isCurrent) {
-          cls += "ring-2 ring-selected bg-selected-soft text-selected font-bold shadow-xs ";
+          cls +=
+            "ring-2 ring-selected bg-selected-soft text-selected font-bold shadow-xs ";
         } else if (flagged) {
-          cls += "bg-bookmark-soft text-bookmark border border-bookmark/40 font-semibold ";
+          cls +=
+            "bg-bookmark-soft text-bookmark border border-bookmark/40 font-semibold ";
         } else if (checked) {
-          cls += correct ? "bg-success-soft text-success border border-success/30 " : "bg-danger-soft text-danger border border-danger/30 ";
+          cls += correct
+            ? "bg-success-soft text-success border border-success/30 "
+            : "bg-danger-soft text-danger border border-danger/30 ";
         } else if (answered) {
           cls += "bg-success-soft text-success border border-success/30 ";
         } else {
-          cls += "bg-card border border-line text-muted hover:border-primary/50 ";
+          cls +=
+            "bg-card border border-line text-muted hover:border-primary/50 ";
         }
 
         return (
@@ -796,8 +864,10 @@
           (index + 1) +
           '">' +
           (index + 1) +
-          (flagged ? '<span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-bookmark ring-1.5 ring-card"></span>' : '') +
-          '</button>'
+          (flagged
+            ? '<span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-bookmark ring-1.5 ring-card"></span>'
+            : "") +
+          "</button>"
         );
       })
       .join("");
@@ -809,7 +879,8 @@
         .map(function (option, index) {
           const isSelected = picked === index;
           const isCorrectAnswer = revealed && index === q.correct;
-          let badgeCls = "bg-surface-muted text-muted font-bold border border-line";
+          let badgeCls =
+            "bg-surface-muted text-muted font-bold border border-line";
           let trailingIcon =
             '<span class="opacity-0 group-hover:opacity-40 transition-opacity text-muted inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5"><circle cx="12" cy="12" r="9" /></svg></span>';
 
@@ -854,11 +925,18 @@
       body = q.items
         .map(function (item, index) {
           const value = answer[index];
-          let row = "grid gap-2.5 rounded-xl border p-3 sm:p-3.5 transition-colors ";
+          let row =
+            "grid gap-2.5 rounded-xl border p-3 sm:p-3.5 transition-colors ";
           let note = "";
           if (revealed) {
-            row += value === item.correct ? "border-success bg-success-soft/80" : "border-danger bg-danger-soft/80";
-            note = '<p class="m-0 text-xs sm:text-sm text-muted leading-relaxed">' + esc(item.explain) + "</p>";
+            row +=
+              value === item.correct
+                ? "border-success bg-success-soft/80"
+                : "border-danger bg-danger-soft/80";
+            note =
+              '<p class="m-0 text-xs sm:text-sm text-muted leading-relaxed">' +
+              esc(item.explain) +
+              "</p>";
           } else {
             row += "border-line bg-card";
           }
@@ -895,7 +973,9 @@
       let mark = "";
       if (revealed) {
         mark = isCorrect(q)
-          ? '<p class="mt-3 sm:mt-4 rounded-xl bg-success-soft border border-success/30 px-4 py-3.5 text-sm sm:text-base font-medium text-success">✓ Đúng. Đáp án: ' + esc(q.sample) + ".</p>"
+          ? '<p class="mt-3 sm:mt-4 rounded-xl bg-success-soft border border-success/30 px-4 py-3.5 text-sm sm:text-base font-medium text-success">✓ Đúng. Đáp án: ' +
+            esc(q.sample) +
+            ".</p>"
           : '<p class="mt-3 sm:mt-4 rounded-xl border border-danger bg-danger-soft px-4 py-3.5 text-sm sm:text-base text-danger font-medium">✕ Chưa đúng. Đáp án: ' +
             esc(q.sample) +
             ".</p>";
@@ -921,17 +1001,19 @@
           feedbackBanner =
             '<div class="mt-3.5 flex items-center gap-2.5 rounded-xl bg-success-soft border border-success/30 px-3.5 py-2.5 text-success font-semibold text-xs sm:text-sm anim-correct">' +
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 shrink-0"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" /></svg>' +
-            '<span>Chính xác hoàn toàn! Bạn làm đúng cả 4/4 ý.</span></div>';
+            "<span>Chính xác hoàn toàn! Bạn làm đúng cả 4/4 ý.</span></div>";
         } else if (hit > 0) {
           feedbackBanner =
             '<div class="mt-3.5 flex items-center gap-2.5 rounded-xl bg-bookmark-soft border border-bookmark/30 px-3.5 py-2.5 text-bookmark font-semibold text-xs sm:text-sm anim-partial">' +
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 shrink-0"><path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" /></svg>' +
-            '<span>Bạn làm đúng ' + hit + '/4 ý. Xem các ý cần lưu ý nhé!</span></div>';
+            "<span>Bạn làm đúng " +
+            hit +
+            "/4 ý. Xem các ý cần lưu ý nhé!</span></div>";
         } else {
           feedbackBanner =
             '<div class="mt-3.5 flex items-center gap-2.5 rounded-xl bg-danger-soft border border-danger/30 px-3.5 py-2.5 text-danger font-semibold text-xs sm:text-sm anim-wrong">' +
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 shrink-0"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM8.28 7.22a.75.75 0 0 0-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 1 0 1.06 1.06L10 11.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L11.06 10l1.72-1.72a.75.75 0 0 0-1.06-1.06L10 8.94 8.28 7.22Z" clip-rule="evenodd" /></svg>' +
-            '<span>Chưa chính xác ý nào. Đọc kỹ phần giải thích bên dưới nhé!</span></div>';
+            "<span>Chưa chính xác ý nào. Đọc kỹ phần giải thích bên dưới nhé!</span></div>";
         }
       } else {
         const ok = isCorrect(q);
@@ -939,12 +1021,12 @@
           feedbackBanner =
             '<div class="mt-3.5 flex items-center gap-2.5 rounded-xl bg-success-soft border border-success/30 px-3.5 py-2.5 text-success font-semibold text-xs sm:text-sm anim-correct">' +
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 shrink-0"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" /></svg>' +
-            '<span>Chính xác! Bạn đã chọn đúng đáp án.</span></div>';
+            "<span>Chính xác! Bạn đã chọn đúng đáp án.</span></div>";
         } else {
           feedbackBanner =
             '<div class="mt-3.5 flex items-center gap-2.5 rounded-xl bg-danger-soft border border-danger/30 px-3.5 py-2.5 text-danger font-semibold text-xs sm:text-sm anim-wrong">' +
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 shrink-0"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM8.28 7.22a.75.75 0 0 0-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 1 0 1.06 1.06L10 11.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L11.06 10l1.72-1.72a.75.75 0 0 0-1.06-1.06L10 8.94 8.28 7.22Z" clip-rule="evenodd" /></svg>' +
-            '<span>Chưa chính xác! Xem đáp án đúng và giải thích chi tiết bên dưới.</span></div>';
+            "<span>Chưa chính xác! Xem đáp án đúng và giải thích chi tiết bên dưới.</span></div>";
         }
       }
     }
@@ -956,24 +1038,34 @@
           '">💡 Giải thích chi tiết</p><p class="m-0 mt-1.5 whitespace-pre-line leading-relaxed text-ink">' +
           esc(q.explain) +
           "</p></div>"
-        : (!revealed && state.mode === "practice"
-            ? '<p class="mt-2.5 text-xs text-muted leading-relaxed">💡 Chọn đáp án rồi bấm "Kiểm tra" để xem kết quả và giải thích.</p>'
-            : '<p class="mt-2.5 text-xs text-muted leading-relaxed">Minh họa trạng thái đáp án được chọn, kết quả công bố khi nộp bài.</p>');
+        : !revealed && state.mode === "practice"
+          ? '<p class="mt-2.5 text-xs text-muted leading-relaxed">💡 Chọn đáp án rồi bấm "Kiểm tra" để xem kết quả và giải thích.</p>'
+          : '<p class="mt-2.5 text-xs text-muted leading-relaxed">Minh họa trạng thái đáp án được chọn, kết quả công bố khi nộp bài.</p>';
 
     let primaryLabel = "Kiểm tra";
     let primaryAction = "check";
     if (state.mode === "exam") {
-      primaryLabel = state.index === state.questions.length - 1 ? "Nộp bài" : "Câu tiếp →";
-      primaryAction = state.index === state.questions.length - 1 ? "ask-finish" : "next";
+      primaryLabel =
+        state.index === state.questions.length - 1 ? "Nộp bài" : "Câu tiếp →";
+      primaryAction =
+        state.index === state.questions.length - 1 ? "ask-finish" : "next";
     } else if (revealed) {
-      primaryLabel = state.index === state.questions.length - 1 ? "Xem kết quả" : "Câu tiếp →";
-      primaryAction = state.index === state.questions.length - 1 ? "ask-finish" : "next";
+      primaryLabel =
+        state.index === state.questions.length - 1
+          ? "Xem kết quả"
+          : "Câu tiếp →";
+      primaryAction =
+        state.index === state.questions.length - 1 ? "ask-finish" : "next";
     }
 
     const submit =
       state.mode === "exam"
-        ? '<button type="button" class="' + primary + ' px-3.5 sm:px-4 text-xs sm:text-sm font-semibold" data-action="ask-finish">Nộp bài</button>'
-        : '<button type="button" class="' + textBtn + ' font-medium text-xs sm:text-sm" data-action="home">← Dừng bài</button>';
+        ? '<button type="button" class="' +
+          primary +
+          ' px-3.5 sm:px-4 text-xs sm:text-sm font-semibold" data-action="ask-finish">Nộp bài</button>'
+        : '<button type="button" class="' +
+          textBtn +
+          ' font-medium text-xs sm:text-sm" data-action="home">← Dừng bài</button>';
     const left = state.deadline ? state.deadline - Date.now() : 0;
     const clockHtml = state.deadline
       ? '<p class="m-0 text-xs sm:text-sm font-bold tracking-wide tabular-nums ' +
@@ -991,41 +1083,43 @@
       '<aside class="w-full lg:w-[310px] xl:w-[340px] shrink-0 order-2 lg:order-1 mt-2 lg:mt-0">' +
       '<div class="rounded-2xl border border-line bg-card p-3.5 sm:p-4 shadow-xs lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:flex lg:flex-col">' +
       '<div class="flex items-center justify-between pb-3 mb-2.5 border-b border-line/70">' +
-      '<div>' +
+      "<div>" +
       '<h2 class="text-sm sm:text-[15px] font-bold text-ink flex items-center gap-2">' +
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4.5 w-4.5 text-primary shrink-0"><path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75ZM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10Zm0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" /></svg>' +
-      'Bảng câu hỏi</h2>' +
+      "Bảng câu hỏi</h2>" +
       '<span class="text-xs text-muted">Bấm số để chuyển câu</span>' +
-      '</div>' +
+      "</div>" +
       '<span class="inline-flex items-center rounded-lg bg-success-soft px-2.5 py-1 text-xs font-bold text-success border border-success/20">' +
       answeredCount +
-      ' / ' +
+      " / " +
       state.questions.length +
-      '</span>' +
-      '</div>' +
+      "</span>" +
+      "</div>" +
       '<div class="dots grid grid-cols-5 gap-2 max-h-[min(520px,calc(100vh-280px))] overflow-y-auto py-1.5 pr-1.5">' +
       dots +
-      '</div>' +
+      "</div>" +
       '<div class="mt-3.5 pt-3 border-t border-line/70 text-xs text-muted space-y-2.5">' +
       '<div class="grid grid-cols-2 gap-x-2 gap-y-1.5">' +
       '<span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-success-soft border border-success/40 shrink-0"></span> Đã làm</span>' +
       '<span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-selected-soft ring-1 ring-selected shrink-0"></span> Đang chọn</span>' +
       '<span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-bookmark-soft border border-bookmark/40 shrink-0"></span> Đánh dấu</span>' +
       '<span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-card border border-line shrink-0"></span> Chưa làm</span>' +
-      '</div>' +
+      "</div>" +
       '<button type="button" class="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-line h-10 ' +
       (isFlagged
-        ? 'bg-bookmark-soft text-bookmark border-bookmark/40 font-semibold'
-        : 'bg-surface-muted hover:bg-card text-muted hover:text-ink') +
+        ? "bg-bookmark-soft text-bookmark border-bookmark/40 font-semibold"
+        : "bg-surface-muted hover:bg-card text-muted hover:text-ink") +
       ' text-xs sm:text-[13px] transition-colors cursor-pointer" data-action="toggle-bookmark">' +
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z" clip-rule="evenodd" /></svg>' +
-      '<span>' +
-      (isFlagged ? 'Đã đánh dấu câu ' + (state.index + 1) : 'Đánh dấu câu ' + (state.index + 1)) +
-      '</span>' +
-      '</button>' +
-      '</div>' +
-      '</div>' +
-      '</aside>';
+      "<span>" +
+      (isFlagged
+        ? "Đã đánh dấu câu " + (state.index + 1)
+        : "Đánh dấu câu " + (state.index + 1)) +
+      "</span>" +
+      "</button>" +
+      "</div>" +
+      "</div>" +
+      "</aside>";
 
     const mainAreaHtml =
       '<div class="flex-1 min-w-0 order-1 lg:order-2 flex flex-col gap-3 sm:gap-3.5">' +
@@ -1036,67 +1130,95 @@
       '<div class="mb-3 flex items-center justify-between gap-2 flex-wrap">' +
       '<div class="flex items-center gap-2">' +
       '<span class="inline-flex items-center rounded-lg bg-success-soft px-2.5 py-1 text-xs font-semibold text-success border border-success/20">' +
-      'Câu ' +
+      "Câu " +
       (state.index + 1) +
-      '</span>' +
+      "</span>" +
       '<span class="text-xs text-muted font-medium">' +
       esc(where) +
-      ' · ' +
+      " · " +
       esc(PARTS[q.part]) +
-      '</span>' +
-      '</div>' +
+      "</span>" +
+      "</div>" +
       '<button type="button" class="' +
       (isFlagged
-        ? 'bg-bookmark-soft text-bookmark border-bookmark/40 font-semibold'
-        : 'bg-card text-muted hover:text-ink border-line hover:border-primary/40') +
+        ? "bg-bookmark-soft text-bookmark border-bookmark/40 font-semibold"
+        : "bg-card text-muted hover:text-ink border-line hover:border-primary/40") +
       ' inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border cursor-pointer transition-colors" data-action="toggle-bookmark" title="Đánh dấu để xem lại sau">' +
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5"><path fill-rule="evenodd" d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z" clip-rule="evenodd" /></svg>' +
-      '<span>' +
-      (isFlagged ? 'Đã đánh dấu' : 'Đánh dấu xem lại') +
-      '</span>' +
-      '</button>' +
-      '</div>' +
-      (q.context ? '<p class="m-0 mb-3 text-sm sm:text-base text-muted leading-relaxed">' + esc(q.context) + '</p>' : '') +
+      "<span>" +
+      (isFlagged ? "Đã đánh dấu" : "Đánh dấu xem lại") +
+      "</span>" +
+      "</button>" +
+      "</div>" +
+      (q.context
+        ? '<p class="m-0 mb-3 text-sm sm:text-base text-muted leading-relaxed">' +
+          esc(q.context) +
+          "</p>"
+        : "") +
       figureHtml(q.images) +
       tableHtml(q.table) +
       '<h1 class="m-0 mt-1 mb-3.5 font-serif text-[clamp(18px,2vw,22px)] leading-[1.4] font-[650] tracking-[-0.02em] whitespace-pre-line text-ink">' +
-      esc(q.prompt || q.lead || '') +
-      '</h1>' +
-      (q.prompt && q.lead ? '<p class="m-0 mt-2 mb-3 text-sm sm:text-base text-muted leading-relaxed">' + esc(q.lead) + '</p>' : '') +
+      esc(q.prompt || q.lead || "") +
+      "</h1>" +
+      (q.prompt && q.lead
+        ? '<p class="m-0 mt-2 mb-3 text-sm sm:text-base text-muted leading-relaxed">' +
+          esc(q.lead) +
+          "</p>"
+        : "") +
       body +
       feedbackBanner +
       explain +
-      '</article>' +
-      (state.hint ? '<p class="mx-1 my-1 text-sm font-semibold text-danger">' + esc(state.hint) + '</p>' : '') +
+      "</article>" +
+      (state.hint
+        ? '<p class="mx-1 my-1 text-sm font-semibold text-danger">' +
+          esc(state.hint) +
+          "</p>"
+        : "") +
       // Bottom Controls
       '<div class="flex items-center justify-between gap-3 pt-0.5">' +
       '<button type="button" class="' +
       ghost +
       ' px-4 sm:px-6 shrink-0" data-action="prev"' +
-      (state.index === 0 ? ' disabled' : '') +
-      '>← Câu trước</button>' +
+      (state.index === 0 ? " disabled" : "") +
+      ">← Câu trước</button>" +
       '<button type="button" class="' +
       primary +
       ' flex-1 sm:flex-initial px-6 sm:px-8 text-center" data-action="' +
       primaryAction +
       '">' +
       primaryLabel +
-      '</button>' +
-      '</div>' +
-      '</div>';
+      "</button>" +
+      "</div>" +
+      "</div>";
 
     return (
-      '<div>' +
-      headerHtml(state.lessonId === "all" ? "Đề tổng hợp cả 5 bài" : (lessonById(state.lessonId) ? lessonById(state.lessonId).title : "Ôn tập"), submit) +
+      "<div>" +
+      headerHtml(
+        state.lessonId === "all"
+          ? "Đề tổng hợp cả 5 bài"
+          : lessonById(state.lessonId)
+            ? lessonById(state.lessonId).title
+            : "Ôn tập",
+        submit,
+      ) +
       // Stat row: TIẾN ĐỘ, THỜI GIAN CÒN
       '<div class="mb-3 flex items-center justify-between gap-3 text-xs sm:text-sm">' +
       '<div class="flex items-center gap-4">' +
       '<div><span class="block text-[10px] sm:text-[11px] font-bold text-muted uppercase tracking-wider">Tiến độ</span><strong class="text-xs sm:text-sm text-ink">' +
-      (state.index + 1) + ' / ' + state.questions.length + ' câu</strong></div>' +
-      (state.deadline ? '<div><span class="block text-[10px] sm:text-[11px] font-bold text-muted uppercase tracking-wider">Thời gian còn</span>' + clockHtml + '</div>' : '') +
-      '</div>' +
-      '<span class="text-xs text-muted font-medium">' + esc(state.mode === "exam" ? "Chế độ Kiểm tra" : "Chế độ Luyện tập") + '</span>' +
-      '</div>' +
+      (state.index + 1) +
+      " / " +
+      state.questions.length +
+      " câu</strong></div>" +
+      (state.deadline
+        ? '<div><span class="block text-[10px] sm:text-[11px] font-bold text-muted uppercase tracking-wider">Thời gian còn</span>' +
+          clockHtml +
+          "</div>"
+        : "") +
+      "</div>" +
+      '<span class="text-xs text-muted font-medium">' +
+      esc(state.mode === "exam" ? "Chế độ Kiểm tra" : "Chế độ Luyện tập") +
+      "</span>" +
+      "</div>" +
       // Progress Bar
       '<div class="mb-4 h-1.5 overflow-hidden rounded-full bg-line"><span class="block h-full bg-primary transition-all duration-300" style="width:' +
       ((state.index + 1) / state.questions.length) * 100 +
@@ -1105,7 +1227,7 @@
       '<div class="flex flex-col lg:flex-row lg:items-start lg:gap-6">' +
       sidebarHtml +
       mainAreaHtml +
-      '</div></div>'
+      "</div></div>"
     );
   }
 
@@ -1131,15 +1253,24 @@
     if (q.type === "tf") {
       return q.items
         .map(function (item, index) {
-          return '<p class="m-0 mt-2"><b>' + marks[index] + ".</b> " + esc(item.explain) + "</p>";
+          return (
+            '<p class="m-0 mt-2"><b>' +
+            marks[index] +
+            ".</b> " +
+            esc(item.explain) +
+            "</p>"
+          );
         })
         .join("");
     }
-    return q.explain ? '<p class="m-0 mt-2 whitespace-pre-line">' + esc(q.explain) + "</p>" : "";
+    return q.explain
+      ? '<p class="m-0 mt-2 whitespace-pre-line">' + esc(q.explain) + "</p>"
+      : "";
   }
 
   function correctText(q) {
-    if (q.type === "mcq") return letters[q.correct] + ". " + q.options[q.correct];
+    if (q.type === "mcq")
+      return letters[q.correct] + ". " + q.options[q.correct];
     if (q.type === "tf") {
       return q.items
         .map(function (item, index) {
@@ -1152,7 +1283,8 @@
 
   function renderResult() {
     const summary = summaryOf(state.questions);
-    const tone = summary.percent >= 80 ? "ok" : summary.percent >= 50 ? "mid" : "bad";
+    const tone =
+      summary.percent >= 80 ? "ok" : summary.percent >= 50 ? "mid" : "bad";
     const line =
       summary.percent >= 80
         ? "Bạn đang nắm chắc phần này."
@@ -1178,13 +1310,13 @@
               '">' +
               (ok ? "Đúng" : "Sai") +
               extra +
-              '</span><span>Bài ' +
+              "</span><span>Bài " +
               q.lessonIndex +
               " · Phần " +
               q.part +
               " · Câu " +
               q.n +
-              "</span></summary><p class=\"m-0 mt-2.5\">" +
+              '</span></summary><p class="m-0 mt-2.5">' +
               esc(q.prompt || q.lead) +
               '</p><p class="m-0 mt-2"><b>Bạn chọn:</b> ' +
               esc(answerText(q)) +
@@ -1198,7 +1330,12 @@
           .join("")
       : '<p class="text-muted">Không có câu sai trong lượt này.</p>';
 
-    const scoreTone = tone === "ok" ? "text-success" : tone === "mid" ? "text-bookmark" : "text-danger";
+    const scoreTone =
+      tone === "ok"
+        ? "text-success"
+        : tone === "mid"
+          ? "text-bookmark"
+          : "text-danger";
 
     let tierBannerHtml = "";
     if (summary.percent >= 80) {
@@ -1206,48 +1343,73 @@
         '<div class="mb-4 relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500/15 via-primary/10 to-amber-500/15 border border-success/30 p-3.5 sm:p-4 anim-celebrate">' +
         '<div class="flex items-center gap-3.5">' +
         '<div class="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-500 text-white shadow-md shadow-amber-500/30 anim-trophy-bounce text-2xl sm:text-3xl">' +
-        '🏆' +
-        '</div>' +
-        '<div>' +
+        "🏆" +
+        "</div>" +
+        "<div>" +
         '<span class="inline-flex items-center gap-1 rounded-full bg-success-soft px-2.5 py-0.5 text-xs font-bold text-success border border-success/30">🎉 Xuất sắc</span>' +
-        '<h3 class="text-sm sm:text-base font-bold text-ink mt-0.5 mb-0.5">Bạn làm đúng ' + summary.correct + '/' + summary.total + ' câu (' + summary.percent + '%)</h3>' +
+        '<h3 class="text-sm sm:text-base font-bold text-ink mt-0.5 mb-0.5">Bạn làm đúng ' +
+        summary.correct +
+        "/" +
+        summary.total +
+        " câu (" +
+        summary.percent +
+        "%)</h3>" +
         '<p class="text-xs text-muted m-0">Kiến thức của bạn rất vững vàng, chúc mừng bạn!</p>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
+        "</div>" +
+        "</div>" +
+        "</div>";
     } else if (summary.percent >= 50) {
       tierBannerHtml =
         '<div class="mb-4 relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-500/10 via-primary/10 to-emerald-500/10 border border-selected/30 p-3.5 sm:p-4">' +
         '<div class="flex items-center gap-3.5">' +
         '<div class="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/20 anim-thumb-float text-2xl sm:text-3xl">' +
-        '👍' +
-        '</div>' +
-        '<div>' +
+        "👍" +
+        "</div>" +
+        "<div>" +
         '<span class="inline-flex items-center gap-1 rounded-full bg-selected-soft px-2.5 py-0.5 text-xs font-bold text-selected border border-selected/30">✨ Khá tốt</span>' +
-        '<h3 class="text-sm sm:text-base font-bold text-ink mt-0.5 mb-0.5">Bạn làm đúng ' + summary.correct + '/' + summary.total + ' câu (' + summary.percent + '%)</h3>' +
+        '<h3 class="text-sm sm:text-base font-bold text-ink mt-0.5 mb-0.5">Bạn làm đúng ' +
+        summary.correct +
+        "/" +
+        summary.total +
+        " câu (" +
+        summary.percent +
+        "%)</h3>" +
         '<p class="text-xs text-muted m-0">Bạn đã nắm được phần lớn kiến thức, ôn thêm một chút nữa nhé!</p>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
+        "</div>" +
+        "</div>" +
+        "</div>";
     } else {
       tierBannerHtml =
         '<div class="mb-4 relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/5 to-amber-500/10 border border-bookmark/30 p-3.5 sm:p-4">' +
         '<div class="flex items-center gap-3.5">' +
         '<div class="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-md shadow-amber-500/20 anim-bulb-glow text-2xl sm:text-3xl">' +
-        '💡' +
-        '</div>' +
-        '<div>' +
+        "💡" +
+        "</div>" +
+        "<div>" +
         '<span class="inline-flex items-center gap-1 rounded-full bg-bookmark-soft px-2.5 py-0.5 text-xs font-bold text-bookmark border border-bookmark/30">💪 Cần cố gắng</span>' +
-        '<h3 class="text-sm sm:text-base font-bold text-ink mt-0.5 mb-0.5">Bạn làm đúng ' + summary.correct + '/' + summary.total + ' câu (' + summary.percent + '%)</h3>' +
-        '<p class="text-xs text-muted m-0">Đừng nản lòng, bấm "Ôn ' + summary.wrong.length + ' câu sai" phía dưới để làm lại nhé!</p>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
+        '<h3 class="text-sm sm:text-base font-bold text-ink mt-0.5 mb-0.5">Bạn làm đúng ' +
+        summary.correct +
+        "/" +
+        summary.total +
+        " câu (" +
+        summary.percent +
+        "%)</h3>" +
+        '<p class="text-xs text-muted m-0">Đừng nản lòng, bấm "Ôn ' +
+        summary.wrong.length +
+        ' câu sai" phía dưới để làm lại nhé!</p>' +
+        "</div>" +
+        "</div>" +
+        "</div>";
     }
 
     return (
-      '<div>' +
-      headerHtml("Kết quả bài thi", '<button type="button" class="' + textBtn + ' font-medium" data-action="home">← Danh sách bài</button>') +
+      "<div>" +
+      headerHtml(
+        "Kết quả bài thi",
+        '<button type="button" class="' +
+          textBtn +
+          ' font-medium" data-action="home">← Danh sách bài</button>',
+      ) +
       '<article class="' +
       sheet +
       '"><p class="' +
@@ -1264,13 +1426,17 @@
       scoreTone +
       '">' +
       summary.percent +
-      "%</p></div><p class=\"mt-2 text-sm sm:text-base leading-relaxed\">" +
+      '%</p></div><p class="mt-2 text-sm sm:text-base leading-relaxed">' +
       line +
       '</p><ul class="m-0 mt-3 grid list-none gap-1.5 p-0 text-xs sm:text-sm text-muted"><li>' +
       (state.mode === "exam" ? "Chế độ kiểm tra" : "Chế độ luyện tập") +
       "</li>" +
       (summary.tfTotal
-        ? "<li>Ý đúng/sai (Phần II): " + summary.tfHit + "/" + summary.tfTotal + " ý</li>"
+        ? "<li>Ý đúng/sai (Phần II): " +
+          summary.tfHit +
+          "/" +
+          summary.tfTotal +
+          " ý</li>"
         : "") +
       (spent ? "<li>Thời gian làm: " + spent + "</li>" : "") +
       (state.minutes ? "<li>Giới hạn: " + state.minutes + " phút</li>" : "") +
@@ -1287,15 +1453,15 @@
       chip +
       '" data-action="filter" data-filter="wrong"' +
       (state.filter === "wrong" ? ' aria-pressed="true"' : "") +
-      '>Câu sai (' +
+      ">Câu sai (" +
       summary.wrong.length +
       ')</button><button type="button" class="' +
       chip +
       '" data-action="filter" data-filter="all"' +
       (state.filter === "all" ? ' aria-pressed="true"' : "") +
-      '>Tất cả (' +
+      ">Tất cả (" +
       summary.total +
-      ")</button></div><div class=\"mt-4 sm:mt-[18px]\">" +
+      ')</button></div><div class="mt-4 sm:mt-[18px]">' +
       reviews +
       "</div></article>"
     );
@@ -1313,14 +1479,14 @@
       '<div class="flex items-start gap-3.5 sm:gap-4">' +
       '<span class="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl bg-bookmark-soft text-bookmark border border-bookmark/30 shadow-xs">' +
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" /></svg>' +
-      '</span>' +
+      "</span>" +
       '<div class="flex-1 min-w-0">' +
       '<h2 class="m-0 font-serif text-[20px] sm:text-[24px] leading-snug font-bold text-ink">Còn ' +
       left +
-      ' câu chưa hoàn thành</h2>' +
+      " câu chưa hoàn thành</h2>" +
       '<p class="mt-1.5 mb-0 text-xs sm:text-sm text-muted leading-relaxed">Những câu bỏ trống sẽ được tính là chưa đúng. Bạn có muốn tiếp tục làm bài hay nộp ngay?</p>' +
-      '</div>' +
-      '</div>' +
+      "</div>" +
+      "</div>" +
       '<div class="mt-5 pt-3 border-t border-line/70 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2.5 sm:gap-3">' +
       '<button type="button" class="' +
       ghost +
@@ -1331,9 +1497,9 @@
       '<button type="button" class="' +
       primary +
       ' w-full sm:w-auto px-5 whitespace-nowrap font-semibold" data-action="finish">Nộp bài ngay</button>' +
-      '</div>' +
-      '</div>' +
-      '</div>'
+      "</div>" +
+      "</div>" +
+      "</div>"
     );
   }
 
@@ -1379,7 +1545,9 @@
     state.startedAt = Date.now();
     state.timeUp = false;
     state.deadline =
-      state.mode === "exam" && state.minutes > 0 ? Date.now() + state.minutes * 60000 : null;
+      state.mode === "exam" && state.minutes > 0
+        ? Date.now() + state.minutes * 60000
+        : null;
     state.view = "quiz";
     render();
   }
@@ -1473,7 +1641,11 @@
       state.keepScroll = true;
       render();
     } else if (action === "start") {
-      const chosen = questionsFor(state.lessonId, state.parts, state.shuffleQuestions);
+      const chosen = questionsFor(
+        state.lessonId,
+        state.parts,
+        state.shuffleQuestions,
+      );
       if (chosen.length) start(chosen);
     } else if (action === "pick") {
       if (state.checked[q.id]) return;
@@ -1561,7 +1733,9 @@
       render();
     } else if (action === "jump-blank") {
       const index = state.questions.findIndex(function (item) {
-        return state.mode === "exam" ? !isAnswered(item) : !state.checked[item.id];
+        return state.mode === "exam"
+          ? !isAnswered(item)
+          : !state.checked[item.id];
       });
       state.modal = null;
       if (index >= 0) state.index = index;
@@ -1633,13 +1807,15 @@
     const typing = event.target.matches("input, textarea");
     if (event.key === "Enter") {
       event.preventDefault();
-      const button = document.querySelector('[data-action="check"], [data-action="next"], [data-action="ask-finish"]');
+      const button = document.querySelector(
+        '[data-action="check"], [data-action="next"], [data-action="ask-finish"]',
+      );
       if (button) button.click();
       return;
     }
     if (typing || q.type !== "mcq" || state.checked[q.id]) return;
     const key = event.key.toLowerCase();
-    const map = { a: 0, b: 1, c: 2, d: 3, "1": 0, "2": 1, "3": 2, "4": 3 };
+    const map = { a: 0, b: 1, c: 2, d: 3, 1: 0, 2: 1, 3: 2, 4: 3 };
     if (map[key] === undefined) return;
     state.answers[q.id] = map[key];
     state.hint = "";
@@ -1658,7 +1834,7 @@
       touchStartX = touch.clientX;
       touchStartY = touch.clientY;
     },
-    { passive: true }
+    { passive: true },
   );
 
   app.addEventListener(
@@ -1666,13 +1842,17 @@
     function (event) {
       if (state.view !== "quiz" || state.modal) return;
       const target = event.target;
-      if (target.closest("input, textarea, table, .dots, [data-action='zoom']")) return;
+      if (target.closest("input, textarea, table, .dots, [data-action='zoom']"))
+        return;
       const touch = event.changedTouches[0];
       const diffX = touch.clientX - touchStartX;
       const diffY = touch.clientY - touchStartY;
       if (Math.abs(diffX) > 48 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
         if (diffX < 0) {
-          if (state.mode === "exam" || state.checked[state.questions[state.index].id]) {
+          if (
+            state.mode === "exam" ||
+            state.checked[state.questions[state.index].id]
+          ) {
             if (state.index < state.questions.length - 1) {
               state.index += 1;
               state.hint = "";
@@ -1690,11 +1870,14 @@
         }
       }
     },
-    { passive: true }
+    { passive: true },
   );
 
   document.getElementById("zoom").addEventListener("click", function (event) {
-    if (event.target.dataset.action === "close-zoom" || event.target === event.currentTarget) {
+    if (
+      event.target.dataset.action === "close-zoom" ||
+      event.target === event.currentTarget
+    ) {
       event.currentTarget.close();
     }
   });

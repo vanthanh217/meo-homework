@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#166534" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>Ôn tập Sinh học 12</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,560;8..60,650&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("sinh12-theme");
+          if (
+            theme === "dark" ||
+            (!theme &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches)
+          ) {
+            document.documentElement.classList.add("dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style type="text/tailwindcss">
+      :root {
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --surface-muted: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --primary: #166534;
+        --primary-hover: #14532d;
+        --focus-ring: #16a34a;
+        --primary-text: #ffffff;
+
+        --success: #166534;
+        --success-soft: #dcfce7;
+        --danger: #b91c1c;
+        --danger-soft: #fee2e2;
+        --selected: #1d4ed8;
+        --selected-soft: #dbeafe;
+        --bookmark: #b45309;
+        --bookmark-soft: #fef3c7;
+      }
+
+      html.dark {
+        --bg: #0b1220;
+        --surface: #111827;
+        --surface-muted: #1f2937;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --border: #334155;
+        --primary: #4ade80;
+        --primary-hover: #86efac;
+        --focus-ring: #4ade80;
+        --primary-text: #0b1220;
+
+        --success: #4ade80;
+        --success-soft: #143824;
+        --danger: #f87171;
+        --danger-soft: #3b1717;
+        --selected: #60a5fa;
+        --selected-soft: #1e293b;
+        --bookmark: #fbbf24;
+        --bookmark-soft: #3a2e12;
+      }
+
+      @theme {
+        --font-sans: "Be Vietnam Pro", "Segoe UI", sans-serif;
+        --font-serif: "Source Serif 4", Palatino, serif;
+
+        --color-background: var(--bg);
+        --color-surface: var(--surface);
+        --color-surface-muted: var(--surface-muted);
+        --color-text-primary: var(--text-primary);
+        --color-text-secondary: var(--text-secondary);
+        --color-text-muted: var(--text-muted);
+        --color-border: var(--border);
+        --color-primary: var(--primary);
+        --color-primary-hover: var(--primary-hover);
+        --color-focus-ring: var(--focus-ring);
+        --color-primary-text: var(--primary-text);
+
+        --color-paper: var(--bg);
+        --color-card: var(--surface);
+        --color-ink: var(--text-primary);
+        --color-muted: var(--text-muted);
+        --color-line: var(--border);
+        --color-pine: var(--primary);
+        --color-pine-dark: var(--primary-hover);
+        --color-pine-soft: var(--success-soft);
+        --color-accent: var(--focus-ring);
+
+        --color-success: var(--success);
+        --color-success-soft: var(--success-soft);
+        --color-danger: var(--danger);
+        --color-danger-soft: var(--danger-soft);
+        --color-selected: var(--selected);
+        --color-selected-soft: var(--selected-soft);
+        --color-bookmark: var(--bookmark);
+        --color-bookmark-soft: var(--bookmark-soft);
+        --color-gold: var(--bookmark);
+        --color-gold-soft: var(--bookmark-soft);
+        --color-rose: var(--danger);
+        --color-rose-soft: var(--danger-soft);
+      }
+    </style>
+    <link rel="stylesheet" href="assests/global.css" />
+  </head>
+
+  <body
+    class="min-h-screen bg-paper font-sans text-base leading-relaxed text-ink selection:bg-pine-soft selection:text-pine transition-colors duration-200"
+  >
+    <div
+      id="app"
+      class="mx-auto w-[min(920px,calc(100%-1.25rem))] sm:w-[min(960px,calc(100%-2rem))] lg:w-[min(1240px,calc(100%-2.5rem))] xl:w-[min(1340px,calc(100%-3rem))] px-0.5 sm:px-0 py-4 sm:py-6 pb-24 sm:pb-12"
+    ></div>
+    <dialog
+      id="zoom"
+      class="m-auto max-h-[92vh] w-[min(960px,calc(100vw-1.5rem))] max-w-[960px] rounded-2xl border-0 bg-neutral-950 p-3 sm:p-4 shadow-2xl backdrop:bg-black/80"
+    >
+      <div class="mb-2 flex items-center justify-between">
+        <button class="text-xs text-neutral-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6"
+            />
+          </svg>
+          Phóng to hình ảnh
+        </button>
+        <button
+          type="button"
+          data-action="close-zoom"
+          class="inline-flex cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#f6f3ea] px-3.5 py-1.5 text-sm font-semibold text-neutral-900 active:scale-95 transition-transform"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="h-4 w-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+          Đóng
+        </button>
+      </div>
+      <div
+        class="flex max-h-[78vh] items-center justify-center overflow-auto rounded-xl bg-white p-2"
+      >
+        <img
+          class="mx-auto max-h-[74vh] w-auto max-w-full object-contain"
+          alt=""
+        />
+      </div>
+    </dialog>
+    <script src="assests/quiz.js"></script>
+    <script src="assests/app.js"></script>
+  </body>
+</html>
