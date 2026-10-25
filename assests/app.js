@@ -1058,14 +1058,25 @@
         state.index === state.questions.length - 1 ? "ask-finish" : "next";
     }
 
+    const backBtn =
+      '<button type="button" class="' +
+      textBtn +
+      ' font-medium text-xs sm:text-sm" data-action="back-prep" title="Quay lại phần chọn luyện đề hoặc kiểm tra">← Đổi cách làm</button>';
+
     const submit =
       state.mode === "exam"
-        ? '<button type="button" class="' +
+        ? '<div class="flex items-center gap-2">' +
+          backBtn +
+          '<button type="button" class="' +
           primary +
-          ' px-3.5 sm:px-4 text-xs sm:text-sm font-semibold" data-action="ask-finish">Nộp bài</button>'
-        : '<button type="button" class="' +
+          ' px-3.5 sm:px-4 text-xs sm:text-sm font-semibold" data-action="ask-finish">Nộp bài</button>' +
+          "</div>"
+        : '<div class="flex items-center gap-2">' +
+          backBtn +
+          '<button type="button" class="' +
           textBtn +
-          ' font-medium text-xs sm:text-sm" data-action="home">← Dừng bài</button>';
+          ' font-medium text-xs sm:text-sm text-muted hover:text-ink" data-action="home">Dừng bài</button>' +
+          "</div>";
     const left = state.deadline ? state.deadline - Date.now() : 0;
     const clockHtml = state.deadline
       ? '<p class="m-0 text-xs sm:text-sm font-bold tracking-wide tabular-nums ' +
@@ -1406,9 +1417,14 @@
       "<div>" +
       headerHtml(
         "Kết quả bài thi",
-        '<button type="button" class="' +
+        '<div class="flex items-center gap-2">' +
+          '<button type="button" class="' +
           textBtn +
-          ' font-medium" data-action="home">← Danh sách bài</button>',
+          ' font-medium text-xs sm:text-sm" data-action="back-prep" title="Quay lại phần chọn luyện đề hoặc kiểm tra">← Đổi cách làm</button>' +
+          '<button type="button" class="' +
+          textBtn +
+          ' font-medium text-xs sm:text-sm" data-action="home">Danh sách bài</button>' +
+          "</div>",
       ) +
       '<article class="' +
       sheet +
@@ -1444,6 +1460,8 @@
       '</ul><div class="mt-5 flex flex-col sm:flex-row gap-2.5"><button type="button" class="' +
       primary +
       ' w-full sm:w-auto px-5 text-center justify-center" data-action="retry">Làm lại bài này</button><button type="button" class="' +
+      ghost +
+      ' w-full sm:w-auto px-5 text-center justify-center" data-action="back-prep">Đổi cách làm</button><button type="button" class="' +
       ghost +
       ' w-full sm:w-auto px-5 text-center justify-center"' +
       (summary.wrong.length ? "" : " disabled") +
@@ -1627,6 +1645,10 @@
       return;
     } else if (action === "home") {
       state.view = "home";
+      state.modal = null;
+      render();
+    } else if (action === "back-prep") {
+      state.view = "prep";
       state.modal = null;
       render();
     } else if (action === "open-lesson") {

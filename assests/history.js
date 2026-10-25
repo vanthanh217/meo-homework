@@ -618,12 +618,20 @@
         "</p>"
       : "";
 
+    const backBtn =
+      '<button type="button" class="' +
+      textBtn +
+      '" data-action="back-prep" title="Quay lại phần chọn luyện đề hoặc kiểm tra">← Đổi cách làm</button>';
+
     const submit =
       state.mode === "exam"
-        ? '<button type="button" class="' +
+        ? '<div class="flex items-center gap-2">' +
+          backBtn +
+          '<button type="button" class="' +
           textBtn +
-          '" data-action="ask-finish">Nộp bài</button>'
-        : "<span></span>";
+          '" data-action="ask-finish">Nộp bài</button>' +
+          "</div>"
+        : backBtn;
 
     const answeredCount = state.questions.filter(isAnswered).length;
 
@@ -774,9 +782,11 @@
       "<div>" +
       headerHtml(
         "Kết quả",
-        '<button type="button" class="' +
+        '<div class="flex items-center gap-2"><button type="button" class="' +
           textBtn +
-          '" data-action="home">← Danh sách</button>'
+          '" data-action="back-prep" title="Quay lại phần chọn luyện đề hoặc kiểm tra">← Đổi cách làm</button><button type="button" class="' +
+          textBtn +
+          '" data-action="home">← Danh sách</button></div>'
       ) +
       '<article class="' +
       sheet +
@@ -803,6 +813,8 @@
       '</ul><div class="mt-4 flex flex-wrap gap-2.5"><button type="button" class="' +
       primary +
       '" data-action="retry">Làm lại</button><button type="button" class="' +
+      ghost +
+      '" data-action="back-prep">Đổi cách làm</button><button type="button" class="' +
       ghost +
       '" data-action="retry-wrong"' +
       (summary.wrong.length ? "" : " disabled") +
@@ -966,6 +978,10 @@
       render();
     } else if (action === "home") {
       state.view = "home";
+      state.modal = null;
+      render();
+    } else if (action === "back-prep") {
+      state.view = "prep";
       state.modal = null;
       render();
     } else if (action === "open-set") {
